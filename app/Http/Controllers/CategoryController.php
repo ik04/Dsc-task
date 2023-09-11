@@ -42,8 +42,8 @@ class CategoryController extends Controller
         }
         $validated = $validation->validated();
         $actualCategoryId = $this->getCategoryId($validated["category_uuid"]);
-        $deleteCategory = Category::select("id")->where("id",$actualCategoryId)->delete();
-        return response()->json(["message"=>"category deleted"],200);
+        $deleteCategory = Category::where("id",$actualCategoryId)->delete();
+        return response()->json(["message"=>"Category deleted"],200);
     }
 
 }
