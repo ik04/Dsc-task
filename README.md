@@ -67,7 +67,7 @@ php artisan serve
 ## Parameters for each route (Post routes):
 
 
-![[Screenshot_20230912_001956.png]]
+![Screenshot_20230911_232332](https://github.com/ik04/Dsc-task/assets/63468587/6e6e024d-3a60-455d-bd65-77a868e6be30)
 
 This Screenshot contains all the routes present in the api.php file inside of the routes folder.
 
