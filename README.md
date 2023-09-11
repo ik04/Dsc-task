@@ -1,66 +1,87 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Task:
+Create a web-based Library Catalog Management System that
+allows librarians to manage their library's collection of books, magazines,
+and other materials. The system will provide a RESTful API for performing
+CRUD operations on library catalogue entries.
+Make sure to design the API with clean and intuitive endpoints that
+are easy to use, follow standard RESTful practices and comprehensive
+documentation for all your endpoints.
+All entries must be saved on any database (used: sqlite)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview:
+This is a simple library management system where you can add any type of material and assign it to a category, you can then manipulate the data in a few ways.
 
-## About Laravel
+## 💻 Tech Stack:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Download Composer and Laravel:
+Windows:
+- Install Php and xampp for windows [here](https://www.apachefriends.org/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Install Composer for windows [here](https://getcomposer.org/)
+- to install Laravel, run the following after installing composer
+```bash
+composer global require laravel/installer
+```
 
-## Learning Laravel
+Linux:
+- Run these commands:
+```bash
+sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+sudo apt install composer
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+composer global require laravel/installer
+```
+- With this you'll have everything you'll need to run my project 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Api Endpoints:
+this api has been made in accordance to the task and so it dosen't store every detail so as to streamline the testing process, it has also been made to easily work with a frontend.
 
-## Laravel Sponsors
+healthcheck and init:
+- api/v1/healthcheck-and-init (route to check if the api is workign and to initialize the db with a few categories)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Category routes:
+- api/v1/add-category (add categories using this route, will explain in usage) **POST**
+- api/v1/get-categories (gets all existing categories present in the db) **GET**
+- api/v1/delete-category (delete any particular category in the db, it also deletes all books associated with the category using cascade on delete) **POST**
 
-### Premium Partners
+Book routes:
+- api/v1/add-book (add a book to the db) **POST**
+- api/v1/get-books (gets all books in the db) **GET**
+- api/v1/delete-book (delete books in the db) **POST**
+- api/v1/update-book-category (update the category of any book, this is the only field since you can't change the name of a book in an actual library XD) **POST**
+## Initialize:
+- After installing and setting up laravel and composer run:
+```bash
+composer install
+cp .env.example .env
+php artisan migrate
+php artisan serve
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+-  After this is done you can test out the routes by sending requests
+-  The methods of each route are inscribed after the each of the mentioned routes
 
-## Contributing
+## Parameters for each route (Post routes):
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+![[Screenshot_20230912_001956.png]]
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+This Screenshot contains all the routes present in the api.php file inside of the routes folder.
 
-## Security Vulnerabilities
+You can refer the app/Controllers folder to check the controller code and get the params:
+- For /add-category:
+You need only add a name field (field name "name")
+- For /delete-category:
+Provide a category_uuid once you create some categories (field name "category_uuid")
+- for /add-book:
+Provide a name and category_uuid
+- for /delete-book:
+Provide a book_uuid
+- for /update-book-category:
+Provide the book_uuid and the new_category_uuid
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
