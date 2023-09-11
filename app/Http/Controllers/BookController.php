@@ -51,21 +51,7 @@ class BookController extends Controller
         Book::where("id",$actualBookId)->delete();
         return response()->json(["message"=>"Book deleted Successfully!"]);
     }
-    public function getByCategory(Request $request){
-        $validation = Validator::make($request->all(),[
-            "book_uuid" => "required|uuid",
-            "category_uuid" => "required|uuid"
-        ]);
-
-        if($validation->fails()){
-            return response()->json($validation->errors()->all(),400);
-        }
-
-        $validated = $validation->validated();
-        $actualBookId = $this->getBookId($validated["book_uuid"]);
-        $actualCategoryId = $this->getCategoryId($validated["category_uuid"]);
-        return response()->json(["message"=>"Book deleted Successfully!"]);
-    }
+    
     public function updateBook(Request $request){
         $validation = Validator::make($request->all(),[
             "book_uuid" => "required|uuid",
@@ -75,6 +61,15 @@ class BookController extends Controller
             return response()->json($validation->errors()->all(),400);
         }
         $validated = $validation->validated();
-
+        $actualBookId = $this->getBookId($validated["book_uuid"]);
+        $actualCategoryId = $this->getCategoryId($validated["new_category_uuid"]); 
+    
+        if (!$actualCategoryId) {
+            return response()->json(["error" => "New category not found"], 404);
+        }
+    
+        Book::where("id", $actualBookId)->update(["category_id" => $actualCategoryId]);
+    
+        return response()->json(["message" => "Book category updated successfully"]);
     }
 }
