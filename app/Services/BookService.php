@@ -8,14 +8,14 @@ use Ramsey\Uuid\Uuid;
 
 class BookService{
 
-    public function getCategoryId($categoryId)
+    public function getCategoryId($categoryUuid)
     {
-        $actualCategoryId = Category::where("category_uuid", $categoryId)->first("id")->id;
+        $actualCategoryId = Category::where("category_uuid", $categoryUuid)->first("id")->id;
         return $actualCategoryId;
     }
-    public function getBookId($bookId)
+    public function getBookId($bookUuid)
     {
-        $actualCategoryId = Book::where("book_uuid", $bookId)->first("id")->id;
+        $actualCategoryId = Book::where("book_uuid", $bookUuid)->first("id")->id;
         return $actualCategoryId;
     }
 

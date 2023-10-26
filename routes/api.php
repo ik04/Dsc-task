@@ -20,19 +20,19 @@ use Ramsey\Uuid\Uuid;
 */
 Route::prefix("v1")->group(function(){
     Route::get("/healthcheck-and-init",function(){
-        Category::create(
+        Category::insert([
             ['name' => 'Fiction',"category_uuid" => Uuid::uuid4(), "id"=>1],
             ['name' => 'Non-Fiction',"category_uuid" => Uuid::uuid4(), "id"=>2],
             ['name' => 'Science Fiction',"category_uuid" => Uuid::uuid4(), "id"=>3],
             ["name"=>'History',"category_uuid" => Uuid::uuid4(), "id"=>4],
-            ["name"=>'Magazine',"category_uuid" => Uuid::uuid4(), "id"=>5]
+            ["name"=>'Magazine',"category_uuid" => Uuid::uuid4(), "id"=>5]]
         );
-        Book::create(
+        Book::insert([
             ["name"=>"To Kill a Mockingbird","category_id"=>1, "id"=>1,"book_uuid"=>Uuid::uuid4()],
             ["name"=>"The Great Gatsby","category_id"=>1, "id"=>2,"book_uuid"=>Uuid::uuid4()],
             ["name"=>"Dune","category_id"=>3, "id"=>3,"book_uuid"=>Uuid::uuid4()],
             ["name"=>"The Art of War","category_id"=>2, "id"=>4,"book_uuid"=>Uuid::uuid4()],
-            ["name"=>"Sapiens: A Brief History of Humankind","category_id"=>4, "id"=>5,"book_uuid"=>Uuid::uuid4()],
+            ["name"=>"Sapiens: A Brief History of Humankind","category_id"=>4, "id"=>5,"book_uuid"=>Uuid::uuid4()],]
         );
             return response()->json("Welcome to Dsc Library, the database has been initialized with the categories and books ~Ishaan Khurana",200);
     });
