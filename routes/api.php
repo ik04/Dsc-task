@@ -44,7 +44,7 @@ Route::prefix("v1")->group(function(){
 
     Route::post("/add-book",[BookController::class,"addBook"]);
     Route::get("/get-books",[BookController::class,"getBooks"]);
-    Route::post("/delete-book",[BookController::class,"deleteBook"]);
-    Route::post("/update-book-category",[BookController::class,"updateBook"]);
+    Route::delete("/delete-book/{bookUuid}",[BookController::class,"deleteBook"]);
+    Route::patch("/update/book/{bookUuid}/category/{categoryUuid}",[BookController::class,"updateBook"]);
 
 });
